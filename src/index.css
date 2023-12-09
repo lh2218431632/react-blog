@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0 12px;
+  background: linear-gradient(
+    423deg,
+    rgba(0, 47, 167, 0.8) 30.5%,
+    rgb(184, 185, 212) 60.07%,
+    rgb(107, 26, 230) 20.05%
+  );
+  opacity: 0.99;
+}
