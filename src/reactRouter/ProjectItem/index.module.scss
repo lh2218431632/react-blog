@@ -1,0 +1,22 @@
+.project_header{
+    display: flex;
+    justify-content: space-between;}
+    .project_header > div:nth-child(2),
+    .project_header > div:nth-child(3) {
+      margin: 0 auto;
+    }
+.project_container{
+    display: flex;
+}
+
+.project_container_left{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 80px;    background-color: aqua;
+}
+
+.project_container_right{
+    flex: 1 0 auto;
+    height: 1000px;
+    background-color: cadetblue;
+}
