@@ -1,19 +1,42 @@
-import React, { useRef, useEffect } from "react";
-import { Input, Button, ConfigProvider } from "antd";
+import React, { useRef, useEffect, useState } from "react";
+import { Input, Button, ConfigProvider, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { getPassword } from "../../data/jiraSoftware";
 import Style from "./index.module.scss";
 function Login(props) {
+  const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
+  const [flag, setFlag] = useState(false);
   const nameRef = useRef();
   const passRef = useRef();
   function handleClick() {
-    console.log("nameRef", nameRef.current.input.value);
-    console.log("passRef", passRef.current.input.value);
+    // localStorage.setItem("name", nameRef.current.input.value);
+    // localStorage.setItem("pass", passRef.current.input.value);
+    // console.log("nameRef", nameRef.current.input.value);
+    // console.log("passRef", passRef.current.input.value);
+    getPassword().then((res) => {
+      if (
+        res.name !== nameRef.current.input.value ||
+        res.password !== passRef.current.input.value
+      ) {
+        messageApi.open({
+          type: "error",
+          content: "This is an error message",
+        });
+        return;
+      } else {
+        messageApi.open({
+          type: "success",
+          content: "This is a success message",
+        });
+        navigate("/project");
+      }
+    });
   }
-  useEffect(() => {
-    console.log("nameRef", nameRef.current);
-    console.log("passRef", passRef.current);
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
+      {contextHolder}
       <div className={Style.container}>
         <div className={Style.item}>
           <h1>请登录</h1>
@@ -23,7 +46,7 @@ function Login(props) {
               token: {
                 // Seed Token，影响范围大
                 activeBg: "#00b96b",
-                colorBgContainer: "#00b96b",
+                colorBgContainer: "#597ef7",
               },
             }}
           >
@@ -34,7 +57,7 @@ function Login(props) {
               token: {
                 // Seed Token，影响范围大
                 activeBg: "#00b96b",
-                colorBgContainer: "#00b96b",
+                colorBgContainer: "#597ef7",
               },
             }}
           >

@@ -41,6 +41,11 @@ const data = [
   },
 ];
 
+const data2 = {
+  name: "2218431632@qq.com",
+  password: "lh990210",
+};
+
 function getData() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -49,4 +54,13 @@ function getData() {
   });
 }
 
+function getPassword() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data2);
+    }, 3000);
+  });
+}
 export default getData;
+
+export { getPassword };
