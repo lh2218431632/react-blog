@@ -1,9 +1,15 @@
 import React from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useLocation, useNavigate } from "react-router-dom";
 import Style from "./index.module.scss";
 function ProjectItem() {
   const { projectId } = useParams();
-  console.log("id", projectId);
+  const navigate = useNavigate();
+  function handleKanBan() {
+    navigate(`/project/${projectId}/kanban`);
+  }
+  function handleTask() {
+    navigate(`/project/${projectId}/epic`);
+  }
   return (
     <>
       <div className={Style.project_header}>
@@ -14,8 +20,8 @@ function ProjectItem() {
       </div>
       <div className={Style.project_container}>
         <div className={Style.project_container_left}>
-          <button>看板</button>
-          <button>任务组</button>
+          <button onClick={handleKanBan}>看板</button>
+          <button onClick={handleTask}>任务组</button>
         </div>
         <div className={Style.project_container_right}>
           <Outlet />
